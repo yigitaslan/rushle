@@ -1,0 +1,6 @@
+.panel{ background:#111827; border:1px solid #1f2937; border-radius:16px; padding:16px; }
+h3{ margin:0 0 12px; font-size:16px; color:#cbd5e1; }
+.metric{ font-size:14px; color:#94a3b8; margin:8px 0; }
+.metric strong{ color:#e5e7eb; }
+.list{ margin:8px 0 0 16px; padding:0; }
+.muted{ color:#94a3b8; font-size:13px; margin-top:6px; }

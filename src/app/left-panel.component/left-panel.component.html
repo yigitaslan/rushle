@@ -1,0 +1,22 @@
+<div class="panel">
+  <h3>Durum</h3>
+
+  @if (mode === 'rush') {
+    <div class="metric">Skor: <strong>{{ score }}</strong></div>
+    <div class="metric">En Yüksek Skor: <strong>{{ high }}</strong></div>
+
+    <h3 style="margin-top:18px;">Bildiklerin</h3>
+    @if (solved.length) {
+      <ul class="list">
+        @for (w of solved; track w) {
+          <li>{{ w }}</li>
+        }
+      </ul>
+    } @else {
+      <div class="metric">Henüz yok</div>
+    }
+  } @else {
+    <div class="metric">Her gün oynayarak serini ilerlet.</div>
+    <div class="muted">Günde 1 kelime, 5 hak.</div>
+  }
+</div>
