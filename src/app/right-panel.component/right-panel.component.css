@@ -1,0 +1,5 @@
+.newgame{ display:flex; justify-content:flex-end; }
+.newgame button{
+  padding:10px 14px; border-radius:12px; border:1px solid #22d3ee;
+  background:#0e7490; color:#e0f2fe; cursor:pointer; font-weight:800;
+}

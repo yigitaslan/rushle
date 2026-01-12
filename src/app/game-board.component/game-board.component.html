@@ -1,0 +1,38 @@
+<div class="board">
+  <!-- Geçmiş tahminler -->
+  @for (row of grid; track $index; let rowIndex = $index) {
+    <div class="row">
+      @for (cell of row; track $index; let colIndex = $index) {
+        <div class="tile"
+             [class.correct]="cell==='correct'"
+             [class.present]="cell==='present'"
+             [class.absent]="cell==='absent'">
+          {{ guesses[rowIndex]!.charAt(colIndex) }}
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Aktif satır -->
+  @if (pendingRow().length > 0 && !isGameOver) {
+    <div class="row">
+      @for (c of pendingRow(); track $index) {
+        <div class="tile">{{ c }}</div>
+      }
+      @for (x of emptySlots(); track $index) {
+        <div class="tile"></div>
+      }
+    </div>
+  }
+
+  <!-- Kalan boş satırlar -->
+  @for (x of remainingRows(); track $index) {
+    <div class="row">
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+      <div class="tile"></div>
+    </div>
+  }
+</div>

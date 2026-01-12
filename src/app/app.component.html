@@ -1,0 +1,76 @@
+<div class="app">
+  <!-- Sol kolon -->
+  <div class="left-col">
+    <div class="brand-row">
+      <span class="brand-tile" aria-hidden="true">R</span>
+      <h1 class="brand-title">RUSHLE</h1>
+    </div>
+
+    <app-left-panel
+      [mode]="mode()"
+      [score]="rush.score()"
+      [high]="rush.highScore()"
+      [solved]="rush.solvedWords()"
+      [streak]="daily.streak()"
+    >
+    </app-left-panel>
+  </div>
+
+  <!-- Oyun alanı -->
+  <div class="main">
+    <div class="topbar">
+      @if (mode()==='rush') {
+      <div class="timer">{{ rush.timeLeft() }} sn</div>
+      } @else {
+      <div class="streak">
+        Mevcut Seri: <strong>{{ daily.streak() }}</strong> Gün
+      </div>
+      }
+    </div>
+
+    <app-game-board
+      [inputPreview]="guessInput()"
+      [grid]="mode() === 'rush' ? rush.grid() : daily.grid()"
+      [guesses]="mode() === 'rush' ? rush.guesses() : daily.guesses()"
+      [isGameOver]="mode() === 'rush' ? rush.isGameOver() : daily.isLocked()"
+    >
+    </app-game-board>
+
+    <div class="feedback">
+      @if (mode()==='rush' && rush.revealWord()) {
+      <div class="reveal">Doğru Kelime: {{ rush.revealWord() }}</div>
+      } @if (mode()==='classic') {
+      <div class="daily-msg">
+        @if (daily.isSolved()) { Tebrikler! Günlük kelimeyi bildin. Yarın
+        görüşmek üzere. } @else if (daily.isLocked()) { Bugünlük olmadı :( Yarın
+        tekrar dene. }
+      </div>
+      } @if (!(mode()==='classic' && daily.isLocked())) {
+      <div class="hint">
+        Klavyeden yaz · <strong>Enter</strong> gönderir ·
+        <strong>Backspace</strong> siler
+      </div>
+      }
+    </div>
+
+    <app-keyboard
+      [guesses]="mode() === 'rush' ? rush.guesses() : daily.guesses()"
+      [grid]="mode() === 'rush' ? rush.grid() : daily.grid()"
+      (type)="addLetter($event)"
+      (backspace)="onBackspace()"
+      (enter)="submit()"
+    >
+    </app-keyboard>
+  </div>
+
+  <!-- Sağ kolon -->
+  <div class="right-col">
+    <div class="mode-switch-outside">
+      <app-mode-switch [mode]="mode()" (modeChange)="onModeChange($event)">
+      </app-mode-switch>
+    </div>
+
+    <app-right-panel [mode]="mode()" (newGame)="rush.startNewGame()">
+    </app-right-panel>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="kbd">
+  <!-- 1. satır -->
+  <div class="row">
+    @for (k of rows[0]; track k) {
+      <button class="key"
+              [class.correct]="keyState(k)==='correct'"
+              [class.present]="keyState(k)==='present'"
+              [class.absent]="keyState(k)==='absent'"
+              (click)="onKey(k)">{{ k }}</button>
+    }
+  </div>
+
+  <!-- 2. satır -->
+  <div class="row">
+    @for (k of rows[1]; track k) {
+      <button class="key"
+              [class.correct]="keyState(k)==='correct'"
+              [class.present]="keyState(k)==='present'"
+              [class.absent]="keyState(k)==='absent'"
+              (click)="onKey(k)">{{ k }}</button>
+    }
+  </div>
+
+  <!-- 3. satır + sağda yatay kontrol -->
+  <div class="row row3">
+    <div class="letters">
+      @for (k of rows[2]; track k) {
+        <button class="key"
+                [class.correct]="keyState(k)==='correct'"
+                [class.present]="keyState(k)==='present'"
+                [class.absent]="keyState(k)==='absent'"
+                (click)="onKey(k)">{{ k }}</button>
+      }
+    </div>
+
+    <div class="ctrl">
+      <button class="key key-ctrl"
+              (click)="onBackspace()"
+              aria-label="Sil"
+              title="Sil (Backspace)">⌫</button>
+
+      <!-- Enter ikonu -->
+      <button class="key key-ctrl key-enter"
+              (click)="onEnter()"
+              aria-label="Enter"
+              title="Enter">⏎</button>
+    </div>
+  </div>
+</div>

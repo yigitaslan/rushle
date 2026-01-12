@@ -1,0 +1,14 @@
+<div
+  class="switch"
+  role="switch"
+  [attr.aria-checked]="isClassic"
+  tabindex="0"
+  (click)="onClick($event)"
+  (keydown)="onKeydown($event)"
+>
+  <div class="labels">
+    <span class="label left"  [class.active]="!isClassic">Zamana Karşı</span>
+    <span class="label right" [class.active]="isClassic">Günlük Seri</span>
+  </div>
+  <div class="thumb" [class.to-right]="isClassic"></div>
+</div>

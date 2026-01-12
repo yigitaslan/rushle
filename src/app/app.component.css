@@ -1,0 +1,110 @@
+:root{
+  --bg:#0f172a; --card:#111827; --text:#e5e7eb; --accent:#38bdf8;
+  --green:#22c55e; --yellow:#eab308; --muted:#334155; --border:#1f2937;
+}
+
+html,body{
+  height:100%;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* GRID: 3 kolon (sol panel, oyun alanı, sağ panel) */
+.app{
+  max-width:1200px;
+  margin:16px auto;
+  padding:0 16px;
+  display:grid;
+  gap:16px;
+  grid-template-columns:260px 1fr auto;
+  align-items:start;
+}
+
+/* Sol kolon: site adı + panel */
+.left-col{ display:flex; flex-direction:column; gap:12px; }
+
+.brand-row{
+  display:flex; align-items:center; gap:8px;
+  margin: 2px 0 4px 2px;
+}
+
+.brand-title{
+  margin:0;
+  font-weight:800;
+  font-size:18px;
+  letter-spacing:.5px;
+}
+
+.brand-tile{
+  --bt: clamp(22px, 2.2vw, 26px);
+  width: var(--bt);
+  height: var(--bt);
+  border-radius: 8px;
+  background:#1f2937;
+  border:1px solid #374151;
+  box-shadow: inset 0 -2px rgba(0,0,0,0.18);
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 900;
+  font-size: calc(var(--bt) * 0.62);
+  line-height: 1;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.brand-row:hover .brand-tile{ border-color:#475569; }
+
+/* Sağ sütun: ortak genişlik */
+.right-col{
+  --rcw: clamp(260px, 28vw, 320px);
+  width: var(--rcw);
+  display:flex; flex-direction:column; gap:12px;
+  align-items: stretch;
+}
+.mode-switch-outside,
+.right-col app-right-panel{ width: 100%; }
+
+/* Orta kolon */
+.main{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+  display:flex; flex-direction:column; gap:12px; align-items:center;
+  max-height: calc(100dvh - 48px);
+  overflow:auto;
+}
+
+.topbar{
+  min-height: 40px;
+  display:flex; justify-content:center; align-items:center;
+}
+.topbar .timer, .topbar .streak{
+  font-weight:800; font-size:18px; letter-spacing:.5px;
+  background:#0b1220; border:1px solid #1e293b; padding:8px 14px; border-radius:12px;
+}
+
+.feedback{
+  min-height: 64px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap: 6px;
+  transition: min-height 150ms ease;
+}
+
+.reveal{
+  margin-top:4px; padding:8px 12px; border-radius:12px;
+  background:#0b1220; border:1px solid var(--accent); color:#e0f2fe; font-weight:700;
+}
+.hint{ font-size:12px; color:#94a3b8; }
+
+/* Mobil: tek kolon */
+@media (max-width:1000px){
+  .app{ grid-template-columns:1fr; }
+  .main{ max-height: none; }
+  .right-col{ --rcw: 100%; width: var(--rcw); }
+}
